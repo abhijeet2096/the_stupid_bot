@@ -19,7 +19,7 @@ import spacy
 nlp = spacy.load('en')
 import MySQLdb
 
-db = MySQLdb.connect("localhost","root","","tt" )
+db = MySQLdb.connect("localhost","root","","bot_db" )
 cursor = db.cursor()
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -74,51 +74,51 @@ def echo(bot, update):
 
     if(flag_north_from and flag_south_to):
         #update.message.reply_text("you want to go from north to south")
-        cursor.execute("select t.Day, t.Vehicle, t.North_South  from main as t where t.North_South + 120000 - current_time() > 0 and  t.North_South + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.North_South  from tt as t where t.North_South  - current_time() > 0 and  t.North_South  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from north to south")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
     elif(flag_north_from and flag_mandi_to):
-        cursor.execute("select t.Day, t.Vehicle, t.North_South  from main as t where t.North_South + 120000 - current_time() > 0 and  t.North_South + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.North_South  from tt as t where t.North_South  - current_time() > 0 and  t.North_South  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from north to mandi , you should take north to south and south to mandi")
         update.message.reply_text("North to South in next 1 hr!")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
-        cursor.execute("select t.Day, t.Vehicle, t.South_Mandi  from main as t where t.South_Mandi + 120000 - current_time() > 0 and  t.South_Mandi + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.South_Mandi  from tt as t where t.South_Mandi  - current_time() > 0 and  t.South_Mandi  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("South to North in next 1 hr!")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
 
     elif(flag_mandi_from and flag_south_to):
-        cursor.execute("select t.Day, t.Vehicle, t.Mandi_South  from main as t where t.Mandi_South + 120000 - current_time() > 0 and  t.Mandi_South + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.Mandi_South  from tt as t where t.Mandi_South  - current_time() > 0 and  t.Mandi_South  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from mandi to south")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
     elif(flag_mandi_from and flag_north_to):
-        cursor.execute("select t.Day, t.Vehicle, t.Mandi_South  from main as t where t.Mandi_South + 120000 - current_time() > 0 and  t.Mandi_South + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.Mandi_South  from tt as t where t.Mandi_South  - current_time() > 0 and  t.Mandi_South  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from mandi to north, you should take mandi to south and then south to north")
         update.message.reply_text("Mandi to South in next 1 hr!")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
-        cursor.execute("select t.Day, t.Vehicle, t.South_North  from main as t where t.South_North + 120000 - current_time() > 0 and  t.South_North + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.South_North  from tt as t where t.South_North  - current_time() > 0 and  t.South_North  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("South to North in next 1 hr!")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
 
     elif(flag_south_from and flag_mandi_to):
-        cursor.execute("select t.Day, t.Vehicle, t.South_Mandi  from main as t where t.South_Mandi + 120000 - current_time() > 0 and  t.South_Mandi + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.South_Mandi  from tt as t where t.South_Mandi  - current_time() > 0 and  t.South_Mandi  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from south to mandi")
         update.message.reply_text(data[0])
         update.message.reply_text(data[1])
     elif(flag_south_from and flag_north_to):
-        cursor.execute("select t.Day, t.Vehicle, t.South_North  from main as t where t.South_North + 120000 - current_time() > 0 and  t.South_North + 120000 - current_time()  < 010000 limit 1 ;")
+        cursor.execute("select t.Day, t.Vehicle, t.South_North  from tt as t where t.South_North  - current_time() > 0 and  t.South_North  - current_time()  < 010000 limit 1 ;")
         data = cursor.fetchone()
         update.message.reply_text("you want to go from south to north")
         update.message.reply_text(data[0])
