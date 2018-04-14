@@ -19,7 +19,7 @@ import spacy
 nlp = spacy.load('en')
 import MySQLdb
 
-db = MySQLdb.connect("localhost","root","Jigyasha#$","tt" )
+db = MySQLdb.connect("localhost","root","","tt" )
 cursor = db.cursor()
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
